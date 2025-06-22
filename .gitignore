@@ -1,0 +1,9 @@
+.venv
+
+crawled_pages.json
+crawl_report.json
+crawler.log
+
+index_data.pkl
+indexing_report.json
+metadata.json
