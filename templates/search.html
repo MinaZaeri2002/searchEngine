@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موتور جستجوی زومیت</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">موتور جستجوی زومیت</a></h1>
+        </header>
+
+        <div id="loading">
+            <div class="loader">
+                <i class="fas fa-spinner fa-spin fa-2x" style="color: #3498db;"></i>
+                <p style="margin-top: 15px; font-size: 18px;">در حال جستجو، لطفا منتظر بمانید...</p>
+            </div>
+        </div>
+
+        <div class="search-form">
+            <form action="/search" method="GET" role="search" class="search-box">
+                <div class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="query" name="query"
+                           placeholder="عبارت مورد نظر خود را جستجو کنید..."
+                           value="{{ query if query else '' }}"
+                           autocomplete="off" autofocus>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                    جستجو
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            const query = document.getElementById('query').value;
+            if(query.trim() !== '') {
+                document.getElementById('loading').style.display = 'block';
+            }
+        });
+
+        // Auto-focus search input on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('query').focus();
+        });
+    </script>
+</body>
+</html>
